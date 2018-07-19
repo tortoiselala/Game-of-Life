@@ -1,6 +1,5 @@
 package gameOfLife;
 
-
 public class Board {
 	private int boardWidth;
 	private int boardHeight;
@@ -108,10 +107,18 @@ public class Board {
 				if ((i + 1 <= boardHeight - 1) && (j + 1 <= boardWidth - 1) && (board[i + 1][j + 1] == 1)) {
 					neighbourNum++;
 				}
+//			*	当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。 （模拟繁殖）
+//				当前细胞为存活状态时，当周围低于2个（不包含2个）存活细胞时， 该细胞变成死亡状态。（模拟人口稀少）
+//			*	当前细胞为存活状态时，当周围有2个或3个存活细胞时， 该细胞保持原样。
+//				当前细胞为存活状态时，当周围有3个以上的存活细胞时，该细胞变成死亡状态。（模拟过度拥挤）
 				if ((board[i][j] == 1) && ensureNumInRules(liveRules, neighbourNum)) {
-					temp[i][j] = 1;
+					temp[i][j] = board[i][j];
 				} else if ((board[i][j] == 0) && ensureNumInRules(deadRules, neighbourNum)) {
 					temp[i][j] = 1;
+				} else if (board[i][j] == 1 && neighbourNum < 2) {
+					temp[i][j] = 0;
+				} else if (board[i][j] == 1 && neighbourNum > 3) {
+					temp[i][j] = 0;
 				}
 			}
 		}

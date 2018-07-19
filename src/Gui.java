@@ -17,6 +17,30 @@ public class Gui {
 		board.setBoardElem(11, 12, 1);
 		
 		
+//		board.setBoardElem(28, 27, 1);
+//		board.setBoardElem(29, 27, 1);
+//		board.setBoardElem(27, 28, 1);
+//		board.setBoardElem(28, 28, 1);
+//		board.setBoardElem(29, 28, 1);
+//		board.setBoardElem(27, 29, 1);
+//		board.setBoardElem(28, 29, 1);
+//		board.setBoardElem(30, 29, 1);
+//		board.setBoardElem(28, 30, 1);
+//		board.setBoardElem(29, 30, 1);
+//		board.setBoardElem(30, 30, 1);
+//		board.setBoardElem(29, 31, 1);
+		board.setBoardElem(27, 28, 1);
+		board.setBoardElem(27, 29, 1);
+		board.setBoardElem(28, 27, 1);
+		board.setBoardElem(28, 28, 1);
+		board.setBoardElem(28, 29, 1);
+		board.setBoardElem(29, 27, 1);
+		board.setBoardElem(29, 28, 1);
+		board.setBoardElem(29, 30, 1);
+		board.setBoardElem(30, 28, 1);
+		board.setBoardElem(30, 29, 1);
+		board.setBoardElem(30, 30, 1);
+		board.setBoardElem(31, 29, 1);
 		
 		JFrame.setDefaultLookAndFeelDecorated(true);
 
@@ -41,7 +65,7 @@ public class Gui {
 			newPanel.setBoard(board.getBoard());
 			board.updateBoard();
 			Thread.currentThread();
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			--i;
 		}
 
