@@ -1,6 +1,5 @@
 package gameOfLife;
 
-import java.util.Date;
 
 public class Board {
 	private int boardWidth;
@@ -10,8 +9,8 @@ public class Board {
 	private int[] deadRules;
 
 	public Board() throws Exception {
-		setBoardWidth(10000);
-		setBoardHeight(10000);
+		setBoardWidth(100);
+		setBoardHeight(100);
 		setBoard(new int[boardWidth][boardHeight]);
 		setLiveRules(new int[] { 2, 3 });
 		setDeadRules(new int[] { 3 });
