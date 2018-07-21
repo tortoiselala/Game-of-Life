@@ -16,6 +16,5 @@ public class TestBoard {
 		System.out.println(test.getBoardWidth());
 		System.out.println(test.getBoardHeight());
 		test.updateBoard();
-		test.setBoardElem(10, 10, 1);
 	}
 }

@@ -1,6 +1,5 @@
 package gameOfLife;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,23 +22,18 @@ public class DividedPanel extends JComponent {
 	private int widthNumber;
 	private int heightNumber;
 	private int[][] board;
-	private double startScreenWidth;
-	private double startScreenHeight;
 
 	public DividedPanel(double screenWidth, double screenHeight) {
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
 		this.localWidthNumber = (int) (screenWidth / minWidthOfCell);
 		this.localHeightNumber = (int) (screenHeight / minWidthOfCell);
-
 	}
 
 	public void setBoard(int[][] board) {
 		this.board = board;
-		this.widthNumber = board.length;
-		this.heightNumber = board[0].length;
-		this.startScreenWidth = screenWidth / 2 - this.widthNumber / 2 * minWidthOfCell;
-		this.startScreenHeight = screenHeight / 2 - this.heightNumber / 2 * minWidthOfCell;
+		this.widthNumber = board[0].length;
+		this.heightNumber = board.length;
 		this.repaint();
 	}
 
@@ -72,15 +66,15 @@ public class DividedPanel extends JComponent {
 		}
 		g2.setPaint(Color.RED);
 
-		for (int i = 0; i < widthNumber; i++) {
-			for (int j = 0; j < heightNumber; j++) {
-				if (board[i][j] >= 1) {
-
-					g2.fill(new Rectangle2D.Double(startScreenWidth + i * minWidthOfCell,
-							startScreenHeight + j * minWidthOfCell, minWidthOfCell, minWidthOfCell));
+		for (int i = 0; i < heightNumber; i++) {
+			for (int j = 0; j < widthNumber; j++) {
+				if (board[i][j] > 0) {
+					g2.fill(new Rectangle2D.Double(j * minWidthOfCell, i * minWidthOfCell, minWidthOfCell,
+							minWidthOfCell));
 				}
 
 			}
 		}
+
 	}
 }

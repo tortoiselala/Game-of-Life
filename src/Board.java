@@ -10,15 +10,15 @@ public class Board {
 	public Board() throws Exception {
 		setBoardWidth(100);
 		setBoardHeight(100);
-		setBoard(new int[boardWidth][boardHeight]);
+		setBoard(new int[boardHeight][boardWidth]);
 		setLiveRules(new int[] { 2, 3 });
 		setDeadRules(new int[] { 3 });
 	}
 
 	public Board(int boardWidth, int boardHeight, int[] liveRules, int[] deadRules) throws Exception {
 		setBoardWidth(boardWidth);
-		setBoardWidth(boardWidth);
-		setBoard(new int[boardWidth][boardHeight]);
+		setBoardHeight(boardHeight);
+		setBoard(new int[boardHeight][boardWidth]);
 		setLiveRules(liveRules);
 		setDeadRules(deadRules);
 	}
@@ -52,12 +52,12 @@ public class Board {
 		return board;
 	}
 
-	public void setBoard(int[][] board) {
+	public void setBoard(int[][] board) throws Exception {
 		if (board.length != boardHeight) {
-			this.boardHeight = board.length;
+			setBoardHeight(board.length);
 		}
 		if (board[0].length != boardWidth) {
-			this.boardWidth = board[0].length;
+			setBoardWidth(board[0].length);
 		}
 		this.board = board;
 	}
@@ -79,9 +79,9 @@ public class Board {
 	}
 
 	public void updateBoard() {
-		int[][] temp = new int[boardWidth][boardHeight];
-		for (int i = 0; i < boardWidth; i++) {
-			for (int j = 0; j < boardHeight; j++) {
+		int[][] temp = new int[boardHeight][boardWidth];
+		for (int i = 0; i < boardHeight; i++) {
+			for (int j = 0; j < boardWidth; j++) {
 				int neighbourNum = 0;
 				if ((i - 1 >= 0) && (j - 1 >= 0) && (board[i - 1][j - 1] == 1)) {
 					neighbourNum++;
@@ -89,44 +89,48 @@ public class Board {
 				if ((i - 1 >= 0) && (board[i - 1][j] == 1)) {
 					neighbourNum++;
 				}
-				if ((i - 1 >= 0) && (j + 1 <= boardWidth - 1) && (board[i - 1][j + 1] == 1)) {
+				if ((i - 1 >= 0) && (j + 1 < boardWidth - 1) && (board[i - 1][j + 1] == 1)) {
 					neighbourNum++;
 				}
 				if ((j - 1 >= 0) && (board[i][j - 1] == 1)) {
 					neighbourNum++;
 				}
-				if ((j + 1 <= boardHeight - 1) && (board[i][j + 1] == 1)) {
+				if ((j + 1 < boardWidth - 1) && (board[i][j + 1] == 1)) {
 					neighbourNum++;
 				}
-				if ((i + 1 <= boardHeight - 1) && (j + 1 <= boardWidth - 1) && (board[i + 1][j + 1] == 1)) {
+				if ((i + 1 < boardHeight - 1) && (j - 1 >= 0) && (board[i + 1][j - 1] == 1)) {
 					neighbourNum++;
 				}
-				if ((i + 1 <= boardHeight - 1) && (board[i + 1][j] == 1)) {
+				if ((i + 1 < boardHeight - 1) && (board[i + 1][j] == 1)) {
 					neighbourNum++;
 				}
-				if ((i + 1 <= boardHeight - 1) && (j + 1 <= boardWidth - 1) && (board[i + 1][j + 1] == 1)) {
+				if ((i + 1 < boardHeight - 1) && (j + 1 < boardWidth - 1) && (board[i + 1][j + 1] == 1)) {
 					neighbourNum++;
 				}
 //			*	当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。 （模拟繁殖）
 //				当前细胞为存活状态时，当周围低于2个（不包含2个）存活细胞时， 该细胞变成死亡状态。（模拟人口稀少）
 //			*	当前细胞为存活状态时，当周围有2个或3个存活细胞时， 该细胞保持原样。
 //				当前细胞为存活状态时，当周围有3个以上的存活细胞时，该细胞变成死亡状态。（模拟过度拥挤）
-				if ((board[i][j] == 1) && ensureNumInRules(liveRules, neighbourNum)) {
-					temp[i][j] = board[i][j];
-				} else if ((board[i][j] == 0) && ensureNumInRules(deadRules, neighbourNum)) {
+//				if ((board[i][j] == 1) && ensureNumInRules(liveRules, neighbourNum)) {
+//					temp[i][j] = board[i][j];
+//				} else if ((board[i][j] == 0) && ensureNumInRules(deadRules, neighbourNum)) {
+//					temp[i][j] = 1;
+//				}
+				if (board[i][j] == 0 && neighbourNum == 3) {
 					temp[i][j] = 1;
-				} else if (board[i][j] == 1 && neighbourNum < 2) {
+				} else if (board[i][j] > 0 && neighbourNum < 2) {
 					temp[i][j] = 0;
-				} else if (board[i][j] == 1 && neighbourNum > 3) {
+				} else if (board[i][j] > 0 && (neighbourNum == 2 || neighbourNum == 3)) {
+					temp[i][j] = board[i][j];
+				} else if (board[i][j] > 0 && neighbourNum > 3) {
 					temp[i][j] = 0;
 				}
 			}
 		}
-
 		this.board = temp;
 	}
 
-	public void setBoardElem(int i, int j, int value) throws Exception {
+	public void setBoardCell(int i, int j, int value) throws Exception {
 		if (i >= 0 && j >= 0 && i < boardHeight && j < boardWidth && value >= 0) {
 			board[i][j] = value;
 		} else {
@@ -134,12 +138,12 @@ public class Board {
 		}
 	}
 
-	private boolean ensureNumInRules(int[] rules, int neighbourNum) {
-		for (int rule : rules) {
-			if (neighbourNum == rule) {
-				return true;
+	private void printBoard() {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				System.out.print(board[i][j]);
 			}
+			System.out.println();
 		}
-		return false;
 	}
 }
