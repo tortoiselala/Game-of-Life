@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
 import javax.swing.JComponent;
 
 public class DividedPanel extends JComponent {
@@ -25,9 +24,11 @@ public class DividedPanel extends JComponent {
 
 	public DividedPanel(double screenWidth, double screenHeight) {
 		this.screenWidth = screenWidth;
+
 		this.screenHeight = screenHeight;
 		this.localWidthNumber = (int) (screenWidth / minWidthOfCell);
 		this.localHeightNumber = (int) (screenHeight / minWidthOfCell);
+		this.setBackground(Color.BLACK);
 	}
 
 	public void setBoard(int[][] board) {

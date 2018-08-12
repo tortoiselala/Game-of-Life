@@ -1,7 +1,7 @@
 package gameOfLife;
 
 public class InitCells {
-	private int[][] InitCellArray;
+	private int[][] initCellArray;
 	private int boardWidth;
 	private int boardHeight;
 
@@ -11,11 +11,17 @@ public class InitCells {
 	}
 
 	public int[][] getInitCellArray() {
-		return InitCellArray;
+		return initCellArray;
 	}
 
 	public void setInitCellArray(int[][] initCellArray) {
-		InitCellArray = initCellArray;
+		this.initCellArray = initCellArray;
+	}
+
+	public void ensureInitCellArrayIsNull() throws Exception {
+		if (initCellArray == null) {
+			throw new Exception("must init the array,before use it!");
+		}
 	}
 
 	public int getBoardWidth() {
@@ -35,10 +41,11 @@ public class InitCells {
 	}
 
 	public int[][] getBoard() {
+
 		int[][] board = new int[boardHeight][boardWidth];
-		for (int m = 0, i = boardHeight / 2 - InitCellArray.length / 2; i < InitCellArray.length; i++, m++) {
-			for (int n = 0, j = boardWidth / 2 - InitCellArray[0].length; j < InitCellArray[0].length; j++, n++) {
-				board[i][j] = InitCellArray[m][n];
+		for (int m = 0, i = boardHeight / 2 - initCellArray.length / 2; m < initCellArray.length; i++, m++) {
+			for (int n = 0, j = boardWidth / 2 - initCellArray[0].length / 2; n < initCellArray[0].length; j++, n++) {
+				board[i][j] = initCellArray[m][n];
 			}
 		}
 		return board;
