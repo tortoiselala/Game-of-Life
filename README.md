@@ -9,7 +9,7 @@ A GUI application implementation of Conway's Game of Life.
 
 # Screenshot
 
-![main screen shoot](/src/image/screenshot.jpg)
+![main screen shoot](./image/screenshot.png)
 
 # About
 
@@ -17,3 +17,16 @@ This is a practice code and there are still bugs about the problem of read threa
 
 I will try to fix it(actually It had been fixed locally, sometimes It will be upload).
 
+
+
+# Why is this game?
+
+
+
+The charm of life games.
+
+
+
+# Future
+
+The issue of synchronization has been resolved, and the next problem to solve is how to make the interface click input valid(and mayde the interface can be more beautiful).

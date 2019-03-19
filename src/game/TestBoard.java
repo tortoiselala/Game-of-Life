@@ -1,4 +1,4 @@
-package gameOfLife;
+package game;
 
 public class TestBoard {
 	public static void main(String[] args) throws Exception {

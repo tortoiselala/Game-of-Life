@@ -1,4 +1,4 @@
-package gameOfLife;
+package game;
 
 public class InitCells {
 	private int[][] initCellArray;

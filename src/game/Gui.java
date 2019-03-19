@@ -1,12 +1,10 @@
-package gameOfLife;
+package game;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
-import javax.swing.JRootPane;
+import game.Board;
+import game.ControlPanel;
 
-import gameOfLife.Board;
-import gameOfLife.ControlPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class Gui extends JFrame {
 	/**

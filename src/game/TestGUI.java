@@ -1,6 +1,6 @@
-package gameOfLife;
+package game;
 
-import gameOfLife.Gui;
+import game.Gui;
 
 public class TestGUI {
 	static int[][] Pulsar = new int[][] { { 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0 },

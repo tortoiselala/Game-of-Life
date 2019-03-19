@@ -1,12 +1,10 @@
-package gameOfLife;
+package game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import javax.swing.JComponent;
 
 public class DividedPanel extends JComponent {
 	/**

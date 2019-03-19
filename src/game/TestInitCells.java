@@ -1,4 +1,4 @@
-package gameOfLife;
+package game;
 
 public class TestInitCells {
 	public static void main(String[] args) {
